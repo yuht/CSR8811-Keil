@@ -250,17 +250,159 @@ void pan1026::ParseHCI()
 					else
 						PAN1026_ERROR;
 				break;
-
-				case (0x1013): // Write BD Address response
-					if (status == 0x00)
-#ifdef BT_DISABLE_UART_RTSCTS
-						this->SetNextStep(pan_cmd_disable_uart_rtscts_control);
-#else			
-						this->SetNextStep(pan_cmd_set_mode); 
-#endif
+					
+				case (0x1009): //csr8811_cmd_hci_read_bd_addr
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_read_buffer_size);
 					else
 						PAN1026_ERROR;
 				break;
+					
+				case (0x1005): //csr8811_cmd_hci_read_buffer_size
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_read_local_supported_features);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x1003): //csr8811_cmd_hci_read_local_supported_features
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_set_event_mask);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c01): //csr8811_cmd_hci_set_event_mask
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_timeout);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c18): //csr8811_cmd_hci_write_page_timeout
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_class_of_device);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c24): //csr8811_cmd_hci_write_class_of_device
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_local_name);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c13): //csr8811_cmd_hci_write_local_name
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_authentication_enable);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c20): //csr8811_cmd_hci_write_authentication_enable
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_inquiry_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1e): //csr8811_cmd_hci_write_inquiry_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1c): //csr8811_cmd_hci_write_inquiry_mode
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c45): //csr8811_cmd_hci_write_page_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_extended_inquiry_response);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c52): //csr8811_cmd_hci_write_page_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_scan_enable);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1a): //csr8811_cmd_hci_write_scan_enable
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_0220);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x2002): //csr8811_cmd_0220
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_le_host_supported);
+					else
+						PAN1026_ERROR;
+				break;
+				//--------------------
+				case (0x0c1e): //csr8811_cmd_hci_write_inquiry_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1e): //csr8811_cmd_hci_write_inquiry_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1e): //csr8811_cmd_hci_write_inquiry_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1e): //csr8811_cmd_hci_write_inquiry_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1e): //csr8811_cmd_hci_write_inquiry_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				case (0x0c1e): //csr8811_cmd_hci_write_inquiry_scan_activity
+					if (status == 0) //sucess
+						this->SetNextStep(csr8811_cmd_hci_write_page_scan_activity);
+					else
+						PAN1026_ERROR;
+				break;
+					
+				
+
+//				case (0x1013): // Write BD Address response
+//					if (status == 0x00)
+//#ifdef BT_DISABLE_UART_RTSCTS
+//						this->SetNextStep(pan_cmd_disable_uart_rtscts_control);
+//#else			
+//						this->SetNextStep(pan_cmd_set_mode); 
+//#endif
+//					else
+//						PAN1026_ERROR;
+//				break;
 			}
 
 		break;
@@ -289,79 +431,106 @@ void pan1026::ParseHCI()
 		case(0xff): //HCI extension
 			uint8_t ocf = this->parser_buffer[3];
 			uint8_t cmd = this->parser_buffer[5];
-
-			if (ocf == 0x08) // Check OCF
+			
+			switch(this->next_cmd)
 			{
-				if (cmd == 0x99)// HCI set mode event
-				{
-					if (this->parser_buffer[6] == 0) //sucess
-					{
-						this->SetNextStep(pan_cmd_le_mng_init);
-					}
-					else
-						PAN1026_ERROR;
-				}
-#ifdef BT_DISABLE_UART_RTSCTS
-				else if( cmd == 0x93) // HCI disable uart rtxcts
-				{
-					if (this->parser_buffer[6] == 0) //sucess
-					{
-						this->SetNextStep(pan_cmd_set_mode);
-					}
-					else
-						PAN1026_ERROR;
-				}
-#endif
-				else
-				{
-					uint8_t info = this->parser_buffer[10];
-
-					switch(info)
-					{
-						case (0x0D): //GET FW info
-							if (this->parser_buffer[11] == 0) //sucess
-							{
-								DEBUG_BT("Pan1026 firmware version %s\r\n", this->parser_buffer + 13);
-								this->SetNextStep(pan_cmd_en_i2c);
-							}
-							else
-								PAN1026_ERROR;
-						break;
-
-						case (0x5B): //Enable I2C Interface
-							if (this->parser_buffer[11] == 0) //sucess
-							{
-								this->SetNextStep(pan_cmd_eeprom_write_en);
-							}
-							else
-								PAN1026_ERROR;
-						break;
-
-						case (0x83): //Enable EEPROM Write Enable
-							if (this->parser_buffer[11] == 0) //sucess
-								this->SetNextStep(pan_cmd_eeprom_read);
-							else
-								PAN1026_ERROR;
-						break;
-
-						case (0x88): //Read MAC
-							if (this->parser_buffer[11] == 0) //sucess
-							{
-								memcpy(this->pan_mac_address, this->parser_buffer + 14, 6);
-#ifdef DEBUG_BT_ENABLED								
-								DEBUG_BT("MAC: ");
-								for (uint8_t i = 0; i < 6; i++)
-									DEBUG_BT("%02X ", this->pan_mac_address[i]);
-								DEBUG_BT("\r\n");
-#endif								
-								this->SetNextStep(pan_cmd_write_mac);
-							}
-							else
-								PAN1026_ERROR;
-						break;
-					}
-				}
+				case csr8811_cmd_ogf_vendor_00fc_1:
+					this->SetNextStep(csr8811_cmd_ogf_vendor_00fc_2);
+					break;
+				case csr8811_cmd_ogf_vendor_00fc_2:
+					this->SetNextStep(csr8811_cmd_ogf_vendor_00fc_3);
+					break;
+				case csr8811_cmd_ogf_vendor_00fc_3:
+					this->SetNextStep(csr8811_cmd_ogf_vendor_00fc_4);
+					break;
+				case csr8811_cmd_ogf_vendor_00fc_4:
+					this->SetNextStep(csr8811_cmd_ogf_vendor_00fc_5);
+					break;
+				case csr8811_cmd_ogf_vendor_00fc_5:
+					this->SetNextStep(csr8811_cmd_ogf_vendor_00fc_6);
+					break;
+				case csr8811_cmd_ogf_vendor_00fc_6:
+					this->SetNextStep(csr8811_cmd_ogf_vendor_00fc_7);
+					break;
+				case csr8811_cmd_ogf_vendor_00fc_7:
+					this->SetNextStep(csr8811_cmd_hci_read_bd_addr);
+					break;
+				default:
+					break;
+				
 			}
+//			if (ocf == 0x08) // Check OCF
+//			{
+//				if (cmd == 0x99)// HCI set mode event
+//				{
+//					if (this->parser_buffer[6] == 0) //sucess
+//					{
+//						this->SetNextStep(pan_cmd_le_mng_init);
+//					}
+//					else
+//						PAN1026_ERROR;
+//				}
+//#ifdef BT_DISABLE_UART_RTSCTS
+//				else if( cmd == 0x93) // HCI disable uart rtxcts
+//				{
+//					if (this->parser_buffer[6] == 0) //sucess
+//					{
+//						this->SetNextStep(pan_cmd_set_mode);
+//					}
+//					else
+//						PAN1026_ERROR;
+//				}
+//#endif
+//				else
+//				{
+//					uint8_t info = this->parser_buffer[10];
+
+//					switch(info)
+//					{
+//						case (0x0D): //GET FW info
+//							if (this->parser_buffer[11] == 0) //sucess
+//							{
+//								DEBUG_BT("Pan1026 firmware version %s\r\n", this->parser_buffer + 13);
+//								this->SetNextStep(pan_cmd_en_i2c);
+//							}
+//							else
+//								PAN1026_ERROR;
+//						break;
+
+//						case (0x5B): //Enable I2C Interface
+//							if (this->parser_buffer[11] == 0) //sucess
+//							{
+//								this->SetNextStep(pan_cmd_eeprom_write_en);
+//							}
+//							else
+//								PAN1026_ERROR;
+//						break;
+
+//						case (0x83): //Enable EEPROM Write Enable
+//							if (this->parser_buffer[11] == 0) //sucess
+//								this->SetNextStep(pan_cmd_eeprom_read);
+//							else
+//								PAN1026_ERROR;
+//						break;
+
+//						case (0x88): //Read MAC
+//							if (this->parser_buffer[11] == 0) //sucess
+//							{
+//								memcpy(this->pan_mac_address, this->parser_buffer + 14, 6);
+//#ifdef DEBUG_BT_ENABLED								
+//								DEBUG_BT("MAC: ");
+//								for (uint8_t i = 0; i < 6; i++)
+//									DEBUG_BT("%02X ", this->pan_mac_address[i]);
+//								DEBUG_BT("\r\n");
+//#endif								
+//								this->SetNextStep(pan_cmd_write_mac);
+//							}
+//							else
+//								PAN1026_ERROR;
+//						break;
+//					}
+//				}
+//			}
 		break;
 	}
 
